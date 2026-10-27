@@ -60,4 +60,13 @@ public class BatchesPage {
 	@AndroidFindBy(uiAutomator = "new UiSelector().textContains(\"Could not update attendance\")")
 	public WebElement attendanceError;
 
+	@AndroidFindBy(xpath = "(//android.widget.EditText)[last()]")
+	public WebElement sessionDate;
+
+	@AndroidFindBy(xpath = "//*[@text=\"Add\" or @content-desc=\"Add\"]")
+	public WebElement addSessionSubmit;
+
+	@AndroidFindBy(uiAutomator = "new UiSelector().textContains(\"Session added\")")
+	public WebElement sessionAddedMessage;
+
 }

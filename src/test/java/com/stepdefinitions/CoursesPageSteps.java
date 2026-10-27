@@ -135,4 +135,11 @@ public class CoursesPageSteps extends BaseClass {
 		Assert.assertFalse(displayed(DeviceSessionManager.getDriver(), courses.submittedMessage));
 		scrollToText(DeviceSessionManager.getDriver(), "Courses");
 	}
+
+	@Then("I verify the Courses page is displayed")
+	public void verifyCoursesPage() {
+
+		visibilityWait(DeviceSessionManager.getDriver(), courses.addCourseButton);
+		Assert.assertTrue(displayed(DeviceSessionManager.getDriver(), courses.addCourseButton));
+	}
 }

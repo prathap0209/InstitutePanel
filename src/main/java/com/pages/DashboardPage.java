@@ -24,6 +24,9 @@ public class DashboardPage {
 	@AndroidFindBy(uiAutomator = "new UiSelector().textContains(\"Institute overview\")")
 	public WebElement overviewHeading;
 
+	@AndroidFindBy(xpath = "//*[@text=\"Create a course\" or @content-desc=\"Create a course\"]")
+	public WebElement createCourseButton;
+
 	@AndroidFindBy(uiAutomator = "new UiSelector().textContains(\"Active courses\")")
 	public WebElement activeCourses;
 

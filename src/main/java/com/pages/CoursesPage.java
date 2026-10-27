@@ -1,5 +1,6 @@
 package com.pages;
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -47,4 +48,7 @@ public class CoursesPage {
 
     @AndroidFindBy(uiAutomator = "new UiSelector().textContains(\"Add a course title\")")
     public WebElement titleError;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().textMatches(\"(?i)published\")")
+    public List<WebElement> publishedCourses;
 }

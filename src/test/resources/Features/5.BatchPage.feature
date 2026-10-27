@@ -66,3 +66,16 @@ Examples:
 | course                  | message                 |
 | Course With Students    | Choose a session above  |
 | Course Without Students | Attendance appears once |
+
+@FR-021 @batch @session @positive
+Scenario Outline: Add a session to the course
+Given I am logged in as an institute
+When I navigate to the Batches page
+And I click the Add session button for the course "<course>"
+And I enter the session date "<date>"
+And I add the session
+Then I verify the session is added
+
+Examples:
+| course         | date |
+| Cyber Security | +1   |

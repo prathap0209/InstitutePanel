@@ -3,6 +3,7 @@ package com.baseclass;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.Dimension;
@@ -109,6 +110,29 @@ public class BaseClass {
 		Rectangle tab = anyTab.getRect();
 		driver.executeScript("mobile: swipeGesture", Map.of("left", 10, "top", tab.getY(), "width", screen.width - 20,
 				"height", Math.max(tab.getHeight(), 20), "direction", direction, "percent", 0.7));
+	}
+
+	public static int getCount(AndroidDriver driver, WebElement element) {
+
+		String digits = getText(driver, element).replaceAll("\\D", "");
+		return digits.isEmpty() ? 0 : Integer.parseInt(digits);
+	}
+
+	public static int getCountByLabel(AndroidDriver driver, String label) {
+
+		String number = ".fromParent(new UiSelector().textMatches(\"\\\\d+\"))";
+		try {
+			return getCount(driver, driver.findElement(
+					AppiumBy.androidUIAutomator("new UiSelector().text(\"" + label + "\")" + number)));
+		} catch (Exception e) {
+			return getCount(driver, driver.findElement(
+					AppiumBy.androidUIAutomator("new UiSelector().textContains(\"" + label + "\")" + number)));
+		}
+	}
+
+	public static int getSize(AndroidDriver driver, List<WebElement> elements) {
+
+		return elements.size();
 	}
 
 	public static String timeStamp() {

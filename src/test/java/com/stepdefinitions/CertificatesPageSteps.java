@@ -144,4 +144,45 @@ public class CertificatesPageSteps extends BaseClass {
 
 		Assert.assertFalse(displayed(DeviceSessionManager.getDriver(), certificates.templateCreatedMessage));
 	}
+
+	@Then("I verify the {string} tile count matches the listed certificates")
+	public void verifyTileCount(String tile) {
+
+		int tileCount = getCountByLabel(DeviceSessionManager.getDriver(), tile);
+		int listedCount = getSize(DeviceSessionManager.getDriver(), certificates.certificateRows);
+		Assert.assertEquals(tileCount, listedCount);
+	}
+
+	@When("I click Preview for the template {string}")
+	public void clickTemplatePreview(String template) {
+
+		clickTemplateAction(template, "Preview");
+	}
+
+	@When("I click Delete for the template {string}")
+	public void clickTemplateDelete(String template) {
+
+		clickTemplateAction(template, "Delete");
+	}
+
+	private void clickTemplateAction(String template, String action) {
+
+		click(DeviceSessionManager.getDriver(), DeviceSessionManager.getDriver()
+				.findElement(AppiumBy.xpath("(//*[contains(@text,'" + template + "')]/following::*[@text='" + action
+						+ "' or @content-desc='" + action + "'])[1]")));
+	}
+
+	@Then("I verify the template preview is displayed")
+	public void verifyTemplatePreview() {
+
+		visibilityWait(DeviceSessionManager.getDriver(), certificates.templatePreview);
+		Assert.assertTrue(displayed(DeviceSessionManager.getDriver(), certificates.templatePreview));
+	}
+
+	@Then("I verify the template is deleted")
+	public void verifyTemplateDeleted() {
+
+		visibilityWait(DeviceSessionManager.getDriver(), certificates.templateDeletedMessage);
+		Assert.assertTrue(displayed(DeviceSessionManager.getDriver(), certificates.templateDeletedMessage));
+	}
 }

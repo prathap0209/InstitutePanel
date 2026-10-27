@@ -1,6 +1,7 @@
 package com.pages;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -47,5 +48,14 @@ public class CertificatesPage {
 
 	@AndroidFindBy(uiAutomator = "new UiSelector().textContains(\"Template name required\")")
 	public WebElement templateNameError;
+
+	@AndroidFindBy(uiAutomator = "new UiSelector().textStartsWith(\"CORZAAR-\")")
+	public List<WebElement> certificateRows;
+
+	@AndroidFindBy(uiAutomator = "new UiSelector().textMatches(\".*(certify that|Certificate of Completion).*\")")
+	public WebElement templatePreview;
+
+	@AndroidFindBy(uiAutomator = "new UiSelector().textContains(\"Template deleted\")")
+	public WebElement templateDeletedMessage;
 
 }

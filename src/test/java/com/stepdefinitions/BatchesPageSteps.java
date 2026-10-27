@@ -184,4 +184,32 @@ public class BatchesPageSteps extends BaseClass {
 
 		Assert.assertFalse(displayed(DeviceSessionManager.getDriver(), batches.attendanceError));
 	}
+
+	@When("I click the Add session button for the course {string}")
+	public void clickAddSession(String course) {
+
+		click(DeviceSessionManager.getDriver(), DeviceSessionManager.getDriver()
+				.findElement(AppiumBy.xpath("(//*[contains(@text,'" + course
+						+ "')]/following::*[@text='Add session' or @content-desc='Add session'])[1]")));
+	}
+
+	@And("I enter the session date {string}")
+	public void enterSessionDate(String date) {
+
+		sendKeys(DeviceSessionManager.getDriver(), batches.sessionDate, resolveDate(date));
+		hideKeyboard(DeviceSessionManager.getDriver());
+	}
+
+	@And("I add the session")
+	public void addSession() {
+
+		click(DeviceSessionManager.getDriver(), batches.addSessionSubmit);
+	}
+
+	@Then("I verify the session is added")
+	public void verifySessionAdded() {
+
+		visibilityWait(DeviceSessionManager.getDriver(), batches.sessionAddedMessage);
+		Assert.assertTrue(displayed(DeviceSessionManager.getDriver(), batches.sessionAddedMessage));
+	}
 }
